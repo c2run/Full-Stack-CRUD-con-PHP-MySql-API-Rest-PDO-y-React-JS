@@ -50,4 +50,31 @@
         }
     }
 
+    function metodoPut($query){
+        try{
+            conectar();
+            $sentencia=$GLOBALS['pdo']->prepare($query);
+            $sentencia->execute();
+            $resultado=array_merge($_GET, $_POST);
+            $sentencia->closeCursor();
+            desconectar();
+            return $resultado;
+        }catch(Exception $e){
+            die("Error: ".$e);
+        }
+    }
+
+    function metodoDelete($query){
+        try{
+            conectar();
+            $sentencia=$GLOBALS['pdo']->prepare($query);
+            $sentencia->execute();
+            $sentencia->closeCursor();
+            desconectar();
+            return $_GET['id'];
+        }catch(Exception $e){
+            die("Error: ".$e);
+        }
+    }
+
 ?>
