@@ -5,9 +5,9 @@ header('Access-Control-Allow-Origin: *');
 
 if($_SERVER['REQUEST_METHOD']=='GET'){
     if(isset($_GET['id'])){
-        $query="select from frameworks where id=".$GET['id'];
+        $query="select * from frameworks where id=".$_GET['id'];
         $resultado=metodoGet($query);
-        echo json_decode($resultado->fetch(PDO::FETCH_ASSOC));
+        echo json_encode($resultado->fetch(PDO::FETCH_ASSOC));
     }else{
         $query="select * from frameworks";
         $resultado=metodoGet($query);
